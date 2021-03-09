@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Projet RO</title>
+    <meta charset="UTF-8" />
+    <link type="text/css" href="styles.css"/>
+  </head>
+  <body>
+    <center>
+      <h1>
+        Ordonnancements (2)<br />
+        Mise en œuvre M.P.M.
+      </h1>
+    </center>
+    <div>
+      </h1>
+      <h4>
+        Aharouite Ahmed<br />
+        Gassot Laffont Octave<br />
+        Larrieu Sasha<br />
+        Groupe 1A<br />
+        RO
+      </h4>
+      Voici le lien du document :
+      <a
+        href="https://webetud.iut-blagnac.fr/pluginfile.php/21617/mod_resource/content/1/Ordo2%20MPM2020.pdf"
+        target="_blank"
+      >
+        Exercice 2.
+      </a>
+    </div>
+    <br>
+    <div>
+        <form name="form1">
+            <input type="hidden" id="nbTaches" value="8">
+            <fieldset>
+                <legend>Données :</legend>
+<!-- Exercice 2 --> 
+<!----> 
+                <table id="tabTaches">
+                    <tr style="text-align: center">
+                        <td>Tâches<br><small>(String)</small></td>
+                        <td>Durée<br><small>(Nombre entier)</small></td>
+                        <td>Prédécesseurs<br><small>(String,String,...)</small></td>
+                    </tr>
+                    <tr id="tr1">
+                      <td><input type="text" id="tache1" placeholder="Tâche 1" value="A" required></td>
+                      <td><input type="number" id="duree1" placeholder="Durée 1" min="0" value="2"required></td>
+                      <td><input type="text" id="predecesseurs1" placeholder="Prédécesseurs 1"  value="B,D"></td>
+                    </tr>
+                    <tr id="tr2">
+                      <td><input type="text" id="tache2" placeholder="Tâche 2" value="B" required></td>
+                      <td><input type="number" id="duree2" placeholder="Durée 2" min="0" value="3" required></td>
+                      <td><input type="text" id="predecesseurs2" placeholder="Prédécesseurs 2" value="F"></td>
+                    </tr>
+                    <tr id="tr3">
+                      <td><input type="text" id="tache3" placeholder="Tâche 3" value="C" required></td>
+                      <td><input type="number" id="duree3" placeholder="Durée 3" min="0" value="10" required></td>
+                      <td><input type="text" id="predecesseurs3" placeholder="Prédécesseurs 3" value="A,G,H"></td>
+                    </tr>
+                    <tr id="tr4">
+                      <td><input type="text" id="tache4" placeholder="Tâche 4" value="D" required></td>
+                      <td><input type="number" id="duree4" placeholder="Durée 4" min="0" value="6" required></td>
+                      <td><input type="text" id="predecesseurs4" placeholder="Prédécesseurs 4" value=""></td>
+                    </tr>
+                    <tr id="tr5">
+                      <td><input type="text" id="tache5" placeholder="Tâche 5" value="E" required></td>
+                      <td><input type="number" id="duree5" placeholder="Durée 5" min="0" value="8" required></td>
+                      <td><input type="text" id="predecesseurs5" placeholder="Prédécesseurs 5" value="G"></td>
+                    </tr>
+                    <tr id="tr6">
+                      <td><input type="text" id="tache6" placeholder="Tâche 6" value="F" required></td>
+                      <td><input type="number" id="duree6" placeholder="Durée 6" min="0" value="9" required></td>
+                      <td><input type="text" id="predecesseurs6" placeholder="Prédécesseurs 6" value=""></td>
+                    </tr>
+                    <tr id="tr7">
+                      <td><input type="text" id="tache7" placeholder="Tâche 7" value="G" required></td>
+                      <td><input type="number" id="duree7" placeholder="Durée 7" min="0" value="1" required></td>
+                      <td><input type="text" id="predecesseurs7" placeholder="Prédécesseurs 7" value="B"></td>
+                    </tr>
+                    <tr id="tr8">
+                      <td><input type="text" id="tache8" placeholder="Tâche 8" value="H" required></td>
+                      <td><input type="number" id="duree8" placeholder="Durée 8" min="0" value="3" required></td>
+                      <td><input type="text" id="predecesseurs8" placeholder="Prédécesseurs 8" value="F"></td>
+                    </tr>
+                  </table>
+<!---->
+<!-- Plusieurs chemin critique -->          
+<!--
+                <table id="tabTaches">
+                    <tr style="text-align: center">
+                      <td>Tâches<br><small>(String)</small></td>
+                      <td>Durée<br><small>(Nombre entier)</small></td>
+                      <td>Prédécesseurs<br><small>(String,String,...)</small></td>
+                    </tr>
+                    <tr id="tr1">
+                      <td><input type="text" id="tache1" placeholder="Tâche 1" value="A" required></td>
+                      <td><input type="number" id="duree1" placeholder="Durée 1" min="0" value="2"required></td>
+                      <td><input type="text" id="predecesseurs1" placeholder="Prédécesseurs 1"  value="B,D"></td>
+                    </tr>
+                    <tr id="tr2">
+                      <td><input type="text" id="tache2" placeholder="Tâche 2" value="B" required></td>
+                      <td><input type="number" id="duree2" placeholder="Durée 2" min="0" value="3" required></td>
+                      <td><input type="text" id="predecesseurs2" placeholder="Prédécesseurs 2" value="F"></td>
+                    </tr>
+                    <tr id="tr3">
+                      <td><input type="text" id="tache3" placeholder="Tâche 3" value="C" required></td>
+                      <td><input type="number" id="duree3" placeholder="Durée 3" min="0" value="20" required></td>
+                      <td><input type="text" id="predecesseurs3" placeholder="Prédécesseurs 3" value="A,G,H"></td>
+                    </tr>
+                    <tr id="tr4">
+                      <td><input type="text" id="tache4" placeholder="Tâche 4" value="D" required></td>
+                      <td><input type="number" id="duree4" placeholder="Durée 4" min="0" value="6" required></td>
+                      <td><input type="text" id="predecesseurs4" placeholder="Prédécesseurs 4" value=""></td>
+                    </tr>
+                    <tr id="tr5">
+                      <td><input type="text" id="tache5" placeholder="Tâche 5" value="E" required></td>
+                      <td><input type="number" id="duree5" placeholder="Durée 5" min="0" value="10" required></td>
+                      <td><input type="text" id="predecesseurs5" placeholder="Prédécesseurs 5" value="G"></td>
+                    </tr>
+                    <tr id="tr6">
+                      <td><input type="text" id="tache6" placeholder="Tâche 6" value="F" required></td>
+                      <td><input type="number" id="duree6" placeholder="Durée 6" min="0" value="9" required></td>
+                      <td><input type="text" id="predecesseurs6" placeholder="Prédécesseurs 6" value=""></td>
+                    </tr>
+                    <tr id="tr7">
+                      <td><input type="text" id="tache7" placeholder="Tâche 7" value="G" required></td>
+                      <td><input type="number" id="duree7" placeholder="Durée 7" min="0" value="2" required></td>
+                      <td><input type="text" id="predecesseurs7" placeholder="Prédécesseurs 7" value="B"></td>
+                    </tr>
+                    <tr id="tr8">
+                      <td><input type="text" id="tache8" placeholder="Tâche 8" value="H" required></td>
+                      <td><input type="number" id="duree8" placeholder="Durée 8" min="0" value="3" required></td>
+                      <td><input type="text" id="predecesseurs8" placeholder="Prédécesseurs 8" value="F"></td>
+                    </tr>
+                    <tr id="tr9">
+                      <td><input type="text" id="tache9" placeholder="Tâche 9" value="I" required></td>
+                      <td><input type="number" id="duree9" placeholder="Durée 9" min="0" value="1" required></td>
+                      <td><input type="text" id="predecesseurs9" placeholder="Prédécesseurs 9" value="E"></td>
+                    </tr>
+                  </table>
+-->
+
+<!-- Exercice 3 --> 
+<!--
+                  <table id="tabTaches">
+                      <tr style="text-align: center">
+                        <td>Tâches<br><small>(String)</small></td>
+                        <td>Durée<br><small>(Nombre entier)</small></td>
+                        <td>Prédécesseurs<br><small>(String,String,...)</small></td>
+                      </tr>
+                      <tr id="tr1">
+                        <td><input type="text" id="tache1" placeholder="Tâche 1" value="A" required></td>
+                        <td><input type="number" id="duree1" placeholder="Durée 1" min="0" value="10"required></td>
+                        <td><input type="text" id="predecesseurs1" placeholder="Prédécesseurs 1"  value=""></td>
+                      </tr>
+                      <tr id="tr2">
+                        <td><input type="text" id="tache2" placeholder="Tâche 2" value="B" required></td>
+                        <td><input type="number" id="duree2" placeholder="Durée 2" min="0" value="20" required></td>
+                        <td><input type="text" id="predecesseurs2" placeholder="Prédécesseurs 2" value=""></td>
+                      </tr>
+                      <tr id="tr3">
+                        <td><input type="text" id="tache3" placeholder="Tâche 3" value="C" required></td>
+                        <td><input type="number" id="duree3" placeholder="Durée 3" min="0" value="20" required></td>
+                        <td><input type="text" id="predecesseurs3" placeholder="Prédécesseurs 3" value=""></td>
+                      </tr>
+                      <tr id="tr4">
+                        <td><input type="text" id="tache4" placeholder="Tâche 4" value="D" required></td>
+                        <td><input type="number" id="duree4" placeholder="Durée 4" min="0" value="40" required></td>
+                        <td><input type="text" id="predecesseurs4" placeholder="Prédécesseurs 4" value="A"></td>
+                      </tr>
+                      <tr id="tr5">
+                        <td><input type="text" id="tache5" placeholder="Tâche 5" value="E" required></td>
+                        <td><input type="number" id="duree5" placeholder="Durée 5" min="0" value="10" required></td>
+                        <td><input type="text" id="predecesseurs5" placeholder="Prédécesseurs 5" value="A,B,C"></td>
+                      </tr>
+                      <tr id="tr6">
+                        <td><input type="text" id="tache6" placeholder="Tâche 6" value="F" required></td>
+                        <td><input type="number" id="duree6" placeholder="Durée 6" min="0" value="4" required></td>
+                        <td><input type="text" id="predecesseurs6" placeholder="Prédécesseurs 6" value="A,C"></td>
+                      </tr>
+                      <tr id="tr7">
+                        <td><input type="text" id="tache7" placeholder="Tâche 7" value="G" required></td>
+                        <td><input type="number" id="duree7" placeholder="Durée 7" min="0" value="12" required></td>
+                        <td><input type="text" id="predecesseurs7" placeholder="Prédécesseurs 7" value="E,F"></td>
+                      </tr>
+                      <tr id="tr8">
+                        <td><input type="text" id="tache8" placeholder="Tâche 8" value="H" required></td>
+                        <td><input type="number" id="duree8" placeholder="Durée 8" min="0" value="5" required></td>
+                        <td><input type="text" id="predecesseurs8" placeholder="Prédécesseurs 8" value="G"></td>
+                      </tr>
+                      <tr id="tr9">
+                          <td><input type="text" id="tache9" placeholder="Tâche 9" value="I" required></td>
+                          <td><input type="number" id="duree9" placeholder="Durée 9" min="0" value="15" required></td>
+                          <td><input type="text" id="predecesseurs9" placeholder="Prédécesseurs 9" value="G"></td>
+                        </tr>
+                      <tr id="tr10">
+                        <td><input type="text" id="tache10" placeholder="Tâche 10" value="J" required></td>
+                        <td><input type="number" id="duree10" placeholder="Durée 10" min="0" value="3" required></td>
+                        <td><input type="text" id="predecesseurs10" placeholder="Prédécesseurs 10" value="D,H,I"></td>
+                      </tr>
+                    </table>
+-->
+
+
+                <br>
+                <input type="button" value="Ajouter" onclick="addTache();">
+                <input type="button" value="Supprimer" onclick="removeTache();">
+                <input type="button" value="Valider" onclick="valider();">
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div id="tableResultat" style="visibility:hidden">
+      <div class="table-wrapper">
+        <table id="tableResultat" class="fl-table">
+          <thead>
+            <tr>
+              <th>Tâches</th>
+              <th>Durée</th>
+              <th>Prédécesseurs</th>
+              <th>Post-requis</th>
+              <th>Rang depuis le début</th>
+              <th>Rang depuis la fin</th>
+              <th>Debut au plus tôt</th>
+              <th>Debut au plus tard</th>
+              <th>Marge total</th>
+              <th>Marge libre</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyResultat">
+          </tbody>
+        </table>
+      </div>
+      <div id="cheminCritique">
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+    <script>
+      class Tache {
+        constructor(name, duree, preds) {
+          this.name = name;
+          this.duree = duree;
+          this.preds = preds;
+          this.postRequis = [];
+          this.rangDepuisLeDebut = null;
+          this.rangDepuisLaFin = null;
+          this.debutAuPlusTot = null;
+          this.debutAuPlusTard = null;
+          this.margeTot = null;
+          this.margeLib = null;
+        }
+        
+        getName() {
+          return this.name;
+        }
+
+        getDuree() {
+          return this.duree;
+        }
+
+        getPreds() {
+          return this.preds;
+        }
+
+        getPost(){
+          return this.postRequis;
+        }
+        
+        setPostRequis(postRequis){
+          this.postRequis = postRequis;
+        }
+
+        setRangDepuisLeDebut(rang){
+          this.rangDepuisLeDebut = rang;
+        }
+
+        setRangDepuisLaFin(rang){
+          this.rangDepuisLaFin = rang;
+        }
+
+        getRangDepuisLeDebut(){
+          return this.rangDepuisLeDebut;
+        }
+
+        getRangDepuisLaFin(){
+          return this.rangDepuisLaFin;
+        }
+        
+        getDebutAuPlusTot(){
+          return this.debutAuPlusTot;
+        }
+
+        getDebutAuPlusTard(){
+          return this.debutAuPlusTard;
+        }
+
+        setDebutAuPlusTot(duree){
+          this.debutAuPlusTot = duree;
+        }
+
+        setDebutAuPlusTard(duree){
+          this.debutAuPlusTard = duree;
+        }
+
+        getMargeTot(){
+          return this.margeTot;
+        }
+
+        setMargeTot(marge){
+          this.margeTot = marge;
+        }
+
+        getMargeLib(){
+          return this.margeLib;
+        }
+
+        setMargeLib(marge){
+          this.margeLib = marge;
+        }
+        
+        toString() {
+          return
+            "Nom : " +
+              this.name +
+              " | Duree : " +
+              this.duree +
+              " | Prédecesseurs : " +
+              this.preds
+          ;
+        }
+      }
+      
+      class TabTache {
+        constructor() {
+          this.tab = [];
+        }
+
+        addTache(tache) {
+          this.tab.push(tache);
+        }
+
+        getTab() {
+          return this.tab;
+        }
+
+        setTab(tab){
+          this.tab = tab;
+        }
+
+        getTaches() {
+          let tabTaches = [];
+          this.tab.forEach(element => {
+            tabTaches.push(element.getName());
+          });
+          return tabTaches;
+        }
+        
+        getTacheName(name) {
+          return this.tab.find(element => element.getName() == name);
+        }
+
+        getPreds() {
+          let tabPreds = [];
+          this.tab.forEach(element => {
+            element.getPreds().forEach(element => {
+              tabPreds.push(element);
+            });
+          });
+          return tabPreds;
+        }
+
+        getPostRequis(tache){
+          let tabPostRequis = [];
+          this.tab.forEach(element => {
+            if(element.getPreds().find(e => e == tache)){
+              tabPostRequis.push(element.getName());
+            }
+          });
+          if(tabPostRequis.length == 0){
+            return [];
+          }
+          return(tabPostRequis);
+        }
+
+        putPostRequis() {
+          this.tab.forEach(element => {
+            element.setPostRequis(this.getPostRequis(element.getName()));
+          });
+        }
+
+        getTacheDeDebut() {
+          let tacheDeDebut = [];
+          for(let i=0; i <this.tab.length; i++){
+            if (this.tab[i].getPreds() == "" && this.tab[i].getName() != "Début"){
+              tacheDeDebut.push(this.tab[i].getName());
+            }
+          }
+          return tacheDeDebut;
+        }
+
+        getTacheDeFin() {
+          let tacheDeFin = [];
+          for(let i=0; i <this.tab.length; i++){
+            if (!this.getPreds().find(element => element == this.tab[i].getName())){
+              tacheDeFin.push(this.tab[i].getName());
+            }
+          }
+          return tacheDeFin;
+        }
+
+        getPredsDeTache(tache){
+          let tabApt = [];
+          for(let i=0; i <this.tab.length; i++){
+            if (this.tab[i].getName() == tache){
+              tabApt.push(this.tab[i].getPreds());
+            }
+          }
+          return tabApt;
+        }
+
+        putDebut(){
+          let tache = this.getTacheName("Début");
+          let rang = 0;
+          this.getTacheDeDebut().forEach(element => {
+            if(rang < this.getTacheName(element).getRangDepuisLaFin()){
+              rang = this.getTacheName(element).getRangDepuisLaFin();
+            }
+          });
+          tache.setPostRequis(this.getTacheDeDebut());
+          tache.setRangDepuisLeDebut(0);
+          tache.setRangDepuisLaFin(rang+1);
+          tache.setDebutAuPlusTot(0);
+          tache.setDebutAuPlusTard(0);
+          tache.setMargeTot(0);
+          tache.setMargeLib(0);
+        }
+
+        putFin(){
+          let tache = this.getTacheName("Fin");
+          let rang = 0;
+          this.getTacheDeFin().forEach(element => {
+            if(rang < this.getTacheName(element).getRangDepuisLeDebut()){
+              rang = this.getTacheName(element).getRangDepuisLeDebut();
+            }
+          });
+          tache.setRangDepuisLeDebut(rang+1);
+          tache.setRangDepuisLaFin(0);
+          tache.setDebutAuPlusTot(0);
+          tache.setDebutAuPlusTard(0);
+        }
+
+        putRangsDebut(){
+          let rang = 1;
+          let tabRangs = this.getTacheDeDebut();
+          let tabStock = tabRangs;
+          let tabStockGeneral = tabRangs;
+          this.tab.forEach(element => {
+            if(tabRangs.find(ele => ele == element.getName())) {
+              element.setRangDepuisLeDebut(rang);
+            }
+          });
+
+          while (tabRangs.length > 0){
+            rang ++;
+            tabStock = tabRangs;
+            tabRangs = [];
+
+            tabStock.forEach(element => {
+                this.getPostRequis(element).forEach(ele => {
+                  if(! tabStockGeneral.find(e => e == ele)){
+                    tabRangs.push(ele);
+                    tabStockGeneral.push(ele);
+                  }
+              });
+            });
+            
+            tabRangs = cleanArray(tabRangs);
+            
+            this.tab.forEach(element => {
+              if(tabRangs.find(ele => ele == element.getName())) {
+                element.setRangDepuisLeDebut(rang);
+              }
+            });
+
+            if (tabRangs.length == 0){
+              break;
+            }
+          }
+        }
+
+        putRangsFin(){
+          
+          let rang = 1;
+          let tabRangs = this.getTacheDeFin();
+          let tabStock = tabRangs;
+          let tabStockGeneral = tabRangs;
+          let tabPreds = [];
+          this.tab.forEach(element => {
+            if(tabRangs.find(ele => ele == element.getName())) {
+              if(element.getName() != "Fin"){
+                element.setRangDepuisLaFin(rang);
+              }
+            }
+          });
+
+          while (tabRangs.length > 0){
+            rang ++; 
+            tabStock = tabRangs; 
+            tabRangs = []; 
+
+            tabStock.forEach(element => {
+              tabPreds = []; 
+              this.getPredsDeTache(element).forEach(ele => {
+                if(! tabStockGeneral.find(e => e == ele) ){
+                  ele.forEach(pred => {
+                    if (pred != "") {
+                      tabRangs.push(pred);
+                    }
+                  });
+                  tabStockGeneral.push(ele);
+                }
+              });
+            });
+            
+            tabRangs = cleanArray(tabRangs); 
+            
+            this.tab.forEach(element => {
+              if(tabRangs.find(ele => ele == element.getName())) {
+                element.setRangDepuisLaFin(rang);
+              }
+            });
+          }
+          
+        }
+
+        calculDebutAuPlusTot(tache){
+          let preds = [];
+          let tabDuree = [];
+
+          // Selectionne les predecesseurs
+          preds = tache.getPreds();
+          //console.log(preds);
+
+          preds.forEach(element => {
+            let dureeAuPlusTot = parseInt(this.getTacheName(element).getDebutAuPlusTot()) + 
+            parseInt(this.getTacheName(element).getDuree());
+
+            tabDuree.push(dureeAuPlusTot);
+          });
+          return Math.max.apply(Math, tabDuree);
+        }
+
+        putDebutAuPlusTot(){
+          let sansDebutAuPlusTot = true;
+          let rang;
+
+          function sortTaches(a,b){
+            if(a.getRangDepuisLeDebut() < b.getRangDepuisLeDebut()){
+                return -1;
+            }
+            if(a.getRangDepuisLeDebut() > b.getRangDepuisLeDebut()){
+                return 1;
+            }
+            return 0;
+          };
+          let tacheEnOrdre = this.tab;
+          tacheEnOrdre.sort(sortTaches);
+
+          //Mettre les taches 1 en debut au plus tot à 0
+          //Puis faire assigner la durée au plus tot de chaque
+          while(sansDebutAuPlusTot) {
+            tacheEnOrdre.forEach(tache => {
+              let debutAuPlusTot = tache.getDebutAuPlusTot();
+
+              if (debutAuPlusTot >= 0){
+                sansDebutAuPlusTot = false;
+              } else {
+                sansDebutAuPlusTot = true;
+              }
+
+              tacheEnOrdre.forEach(tache => {
+                if(tache.getRangDepuisLeDebut() == 1){
+                  tache.setDebutAuPlusTot(0);
+                } 
+                else {
+                  rang = this.calculDebutAuPlusTot(tache);
+                  tache.setDebutAuPlusTot(this.calculDebutAuPlusTot(tache));
+                }
+              });
+            });
+          }
+          this.getTacheName("Fin").setDebutAuPlusTard(rang);
+        }
+
+        calculDebutAuPlusTard(tache){
+          let tabDuree = [];
+
+          tache.getPost().forEach(element => {
+            let dureeAuPlusTard = parseInt(this.getTacheName(element).getDebutAuPlusTard()) - 
+            parseInt(tache.getDuree());
+
+            tabDuree.push(dureeAuPlusTard);
+          });
+          return Math.min.apply(Math, tabDuree);
+        }
+
+        putDebutAuPlusTard(){
+          let sansDebutAuPlusTard = true;
+          let rang;
+
+          function sortTaches(a,b){
+            if(a.getRangDepuisLeDebut() < b.getRangDepuisLeDebut()){
+                return 1;
+            }
+            if(a.getRangDepuisLeDebut() > b.getRangDepuisLeDebut()){
+                return -1;
+            }
+            return 0;
+          };
+          
+          let tacheEnOrdre = this.tab;
+          tacheEnOrdre.sort(sortTaches);
+
+          tacheEnOrdre.forEach(tache => {
+            let debutAuPlusTard = tache.getDebutAuPlusTard();
+              tacheEnOrdre.forEach(tache => {
+                if(tache.getName()!="Fin") {
+                  rang = this.calculDebutAuPlusTard(tache);
+                  tache.setDebutAuPlusTard(this.calculDebutAuPlusTard(tache));
+                }
+              });
+          });   
+        }
+        
+        findTachesCritique(){
+          let tachesCritique = [];
+
+          this.tab.forEach(element => {
+            if(element.getDebutAuPlusTot() == element.getDebutAuPlusTard()){
+              tachesCritique.push(element);
+            }
+          });
+
+          return tachesCritique;
+        }
+
+        findTachesNonCritique(){
+          let tachesNonCritique = [];
+
+          this.tab.forEach(element => {
+            if(element.getDebutAuPlusTot() != element.getDebutAuPlusTard()){
+              tachesNonCritique.push(element);
+            }
+          });
+
+          return tachesNonCritique;
+        }
+
+        findCheminsCritique(){
+          let tachesCritique = this.findTachesCritique();
+          let cheminsCritique = [];
+          let tabTaches = [];
+          let tabStock = [];
+          let rang = 1;
+          let count = 0;
+
+          tachesCritique.forEach(element => {
+            if(element.getRangDepuisLeDebut()==rang){
+              tabTaches.push(element);
+              cheminsCritique.push(element);
+            }
+          });
+
+          while(rang!=this.getTacheName("Fin").getRangDepuisLeDebut()){
+            rang++;
+            tabStock = tabTaches; 
+            tabTaches = [];
+            tabStock.forEach(element => {
+              element.getPost().forEach(ele => {
+                if(tachesCritique.find(e => e.getName() == ele)) {
+                  cheminsCritique.push(this.getTacheName(ele));
+                  tabTaches.push(this.getTacheName(ele));
+                }
+              });
+            });
+          }
+
+          return cheminsCritique;          
+        }
+
+        putMarge(){
+          let tachesCritique = this.findTachesCritique();
+          let tachesNonCritique = this.findTachesNonCritique();
+          let margeTot = 0;
+          let margeLib = 0;
+          let tabMargeTot = [];
+          let tabMargeLib = [];
+
+          tachesCritique.forEach(element => {
+            element.setMargeTot(margeTot);
+            element.setMargeLib(margeLib);
+          });
+          tachesNonCritique.forEach(element => {
+            let tabMargeTot = [];
+            let tabMargeLib = [];
+            element.getPost().forEach(ele => {
+              margeTot = this.getTacheName(ele).getDebutAuPlusTard() - element.getDuree() - element.getDebutAuPlusTot();
+              margeLib = this.getTacheName(ele).getDebutAuPlusTot() - element.getDuree() - element.getDebutAuPlusTot();
+              tabMargeTot.push(margeTot);
+              tabMargeLib.push(margeLib);
+            });
+            element.setMargeTot(Math.min.apply(Math, tabMargeTot));
+            element.setMargeLib(Math.min.apply(Math, tabMargeLib));
+          });
+        }
+
+        affichageTabName(tabTaches){
+          let tabTachesName = [];
+          let tabPlusieursTachesName = [];
+          tabTaches.forEach(element => {
+            tabTachesName.push(element.getName());
+          });
+          return tabTachesName;
+        }
+        
+        triTabTache(){
+          function sortTaches(a,b){
+            if(a.getRangDepuisLeDebut() < b.getRangDepuisLeDebut()){
+                return -1;
+            }
+            if(a.getRangDepuisLeDebut() > b.getRangDepuisLeDebut()){
+                return 1;
+            }
+            return 0;
+          };
+          
+          return this.tab.sort(sortTaches);
+        }
+
+        sortByName(){
+          function sortTaches(a,b){
+            if(parseInt(a.getName().localeCompare(b.getName()))>1){
+                return -1;
+            }
+            if(parseInt(a.getName())<parseInt(b.getName())){
+                return 1;
+            }
+            return 0;
+          };
+          
+          return this.tab.sort(sortTaches);
+        }
+
+        toString(){
+          for(let i=0; i<tab.length; i++){
+            tab(i).toString;
+          }
+        }
+      }
+
+      //cleanArray removes all duplicated elements
+      function cleanArray(array) {
+        var i, j, len = array.length, out = [], obj = {};
+        for (i = 0; i < len; i++) {
+          obj[array[i]] = 0;
+        }
+        for (j in obj) {
+          out.push(j);
+        }
+        return out;
+      }
+
+      function check_duree( champ, nomchamp ) {
+        if (champ.value != parseInt(champ.value)){
+          alert("La durée n°"+nomchamp+" n'est pas un nombre entier");
+          return false;
+        }
+        return true;
+      }
+
+      function check_tache( champ, nomchamp ) {
+        const regex = new RegExp("^[A-Za-z0-9]+$");
+        if(champ.value=="Debut") {
+          alert("La tâche ne pas s'appeller : \"Debut\"");
+          return false;
+        }
+        if(champ.value=="Début") {
+          alert("La tâche ne pas s'appeller : \"Début\"");
+          return false;
+        }
+        if(champ.value=="Fin") {
+          alert("La tâche ne pas s'appeller : \"Fin\"");
+          return false;
+        }
+        if (!regex.test(champ.value)){
+          alert("Pas de caractère spéciaux pour la tache n°"+nomchamp);
+          return false;
+        }
+        return true;
+      }
+
+      function addTache() {
+        let i = parseInt(document.getElementById("nbTaches").value);
+        i++;
+        document.getElementById("nbTaches").value=i;
+        document.getElementById("tabTaches").insertAdjacentHTML('beforeend',
+            '<tr id="tr'+i+'"><td><input type="text" id="tache' +
+              i +
+              '" placeholder="Tâche ' +
+              i +
+              '"></td>' +
+              '<td><input type="number" id="duree' +
+              i +
+              '" placeholder="Duree ' +
+              i +
+              '" min="0"></td>' +
+              '<td><input type="text" id="predecesseurs' +
+              i +
+              '" placeholder="Prédécesseurs ' +
+              i +
+              '"></td><tr>'
+          );
+      }
+
+      function removeTache() {
+        let i = parseInt(document.getElementById("nbTaches").value);
+        if (i > 0){
+          document.getElementById("tr"+ i).remove();
+          document.getElementById("nbTaches").value = i-1;
+        }
+        else{
+          alert("Vous ne pouvez pas supprimer de taches...");
+        }
+      }
+
+      function predsExist(tabTaches, tabPreds) {
+        let tabMauvaisPreds = [];
+        for (let i=0; i<tabPreds.length; i++) {
+          if (!tabTaches.find(element => element == tabPreds[i]) && tabPreds[i] != ""){
+            tabMauvaisPreds.push(tabPreds[i]);
+          }
+        }
+        return tabMauvaisPreds;
+      }
+
+      function initTabResultat(tabTaches) {
+        if (document.getElementsByClassName("initTabResultatClass").length>0) {
+          let initTabResultatClass = document.getElementsByClassName("initTabResultatClass");
+          while(initTabResultatClass.length>0) initTabResultatClass[0].remove();
+        }
+        tabTaches.getTab().forEach(element => {
+          document.getElementById("tbodyResultat").insertAdjacentHTML('beforeend',
+            '<tr class="initTabResultatClass" style="text-align:center">'+
+              '<td>'+element.getName()+'</td>' +
+              '<td>'+element.getDuree()+'</td>' +
+              '<td>'+element.getPreds()+'</td>' +
+              '<td>'+element.getPost()+'</td>' +
+              '<td>'+element.getRangDepuisLeDebut()+'</td>' +
+              '<td>'+element.getRangDepuisLaFin()+'</td>' +
+              '<td>'+element.getDebutAuPlusTot()+'</td>' +
+              '<td>'+element.getDebutAuPlusTard()+'</td>' +
+              '<td>'+element.getMargeTot()+'</td>' +
+              '<td>'+element.getMargeLib()+'</td>' +
+            '<tr>');
+        });
+        document.getElementById("tableResultat").style.visibility = "visible";
+      }
+
+      function initCheminCritique(tabTaches) {
+        if (document.getElementsByClassName("initCheminCritique").length>0) {
+          let initCheminCritique = document.getElementsByClassName("initCheminCritique");
+          while(initCheminCritique.length>0) initCheminCritique[0].remove();
+        }
+        let nomTache = tabTaches.affichageTabName(tabTaches.findCheminsCritique());       
+        let separateur = "<span style='color:red'> - </span>" ;
+        let texteChemin = "<div class='initCheminCritique'>Chemin critique :<br><br> &emsp; <span style='color:blue'>Début"+separateur;
+        nomTache.forEach(element => {
+          texteChemin += element+separateur;
+        });
+        texteChemin = texteChemin.substr(0, texteChemin.length-separateur.length);
+        texteChemin += "</span></div>";
+        document.getElementById("cheminCritique").insertAdjacentHTML('beforeend', texteChemin); 
+      }
+
+      function valider() {
+        let valide = true;
+        let tabMauvaisPreds = [];
+        let nbTaches = parseInt(document.getElementById("nbTaches").value);
+        let tabTaches = new TabTache();
+         
+        // Test : Nombre de taches
+        if (nbTaches == 0) {
+          alert("Nombre de tâches < 0");
+          valide = false;
+        }
+        else {
+          // Initialisation d'un tableau de taches
+          for(let i = 1; i < nbTaches+1; i++){
+            let tache = "tache"+i;
+            let duree = "duree"+i;
+            let preds = "predecesseurs"+i;
+            if (!check_tache(document.getElementById(tache), i) &&
+                !check_duree(document.getElementById(duree), i)) {
+                  valide = false;
+            }
+            let tacheById = document.getElementById(tache).value;
+            let dureeById = document.getElementById(duree).value;
+            let predsById = document.getElementById(preds).value.split(",");
+            if(!predsById.find(element => element == tacheById)){
+              tabTaches.addTache(new Tache(tacheById, dureeById, predsById));
+            }
+            else{
+              alert("La tâche n°"+i+" ne peut être son propre prédécesseur");
+              valide = false;
+            }
+          }
+        }
+
+        tabTaches.addTache(new Tache("Fin", 0, tabTaches.getTacheDeFin()));
+
+        if (nbTaches>1) {
+          tabMauvaisPreds = predsExist(tabTaches.getTaches(), tabTaches.getPreds());
+        } else {
+          alert("Veuillez saisir au minimum 2 tâches");
+          valide = false;
+        }
+        if (tabMauvaisPreds.length>0) {
+          for (let i=0; i<tabMauvaisPreds.length; i++) {
+            alert("Le prédécesseurs n°"+tabMauvaisPreds[i]+" est invalide");
+          }
+          valide = false;
+        }
+        if (valide) {
+          tabTaches.putPostRequis();
+          tabTaches.putRangsDebut();
+          tabTaches.putRangsFin();
+          tabTaches.putFin();
+          tabTaches.putDebutAuPlusTot();
+          tabTaches.putDebutAuPlusTard();
+          tabTaches.findCheminsCritique();
+          tabTaches.findTachesNonCritique();
+          tabTaches.putMarge();
+          tabTaches.addTache(new Tache("Début", 0, []));
+          tabTaches.putDebut();
+          tabTaches.triTabTache();
+          //console.log("cheminsCritique");
+          //console.log(tabTaches.affichageTabName(tabTaches.findCheminsCritique()));
+          initTabResultat(tabTaches);
+          initCheminCritique(tabTaches);
+         //document.form1.submit();
+       }
+        //console.log("getTacheDeDebut : " + tabTaches.getTacheDeDebut());
+        //console.log("getTacheDeFin : " + tabTaches.getTacheDeFin());
+        //console.log("getDebutAuPlusTot : " + tabTaches.getDebutAuPlusTot("A"));
+        //console.log("predsExist : " + predsExist(tabTaches.getTaches(), tabTaches.getPreds()));
+        //console.log("getPostRequis : " + tabTaches.getPostRequis("F"));
+        
+        //console.log("tabTaches");
+        //console.log(tabTaches);
+      }
+    </script>
+  </body>
+</html>
